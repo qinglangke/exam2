@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/pixi.min.js"></script>
+    <script>
+    var app = new PIXI.Application(1200,800);
+        document.body.appendChild(app.view);
+        
+        var bg = new PIXI.Sprite.fromImage("res/bg.png");
+        app.stage.addChild(bg);
+        bg.scale.x = 1.3;
+        bg.scale.y = 1.3;
+        
+        var huojian = new PIXI.Sprite.fromImage("res/huojian.png");
+        app.stage.addChild(huojian);
+        huojian.scale.x = 0.2;
+        huojian.scale.y = 0.2;
+        huojian.y = 500;
+        huojian.x = 200;
+        
+        var defen = new PIXI.Text("连击火箭，冲上宇宙！");
+
+        app.stage.addChild(defen);
+        defen.text = "连击火箭，冲上宇宙！";
+
+        
+        var yuzhou = new PIXI.Sprite.fromImage("res/yuzhou.png");
+        app.stage.addChild(yuzhou);
+        yuzhou.scale.x = 1.9;
+        yuzhou.scale.y = 2.4;
+        yuzhou.visible = false;
+        
+        var fan = new PIXI.Text("返回地球");
+                app.stage.addChild(fan);
+        fan.text = "返回地球";
+        fan.visible = false;
+        fan.x = 620;
+        fan.style.fill = 0xffffff;
+
+        
+        
+        huojian.interactive = true;
+
+        huojian.on("click",move);
+
+        function move() {
+            huojian.y -= 25;
+            if(huojian.y <= 0){
+            	yuzhou.visible = true;
+            	huojian.y = 500;
+            	fan.visible = true;
+            }
+        }
+    </script>
+</body>
+</html>
